@@ -19,14 +19,14 @@ let cards = [
     [2, "d"], [3, "d"], [4, "d"], [5, "d"], [6, "d"], [7, "d"], [8, "d"], [9, "d"], [10, "d"], [11, "d"], [12, "d"], [13, "d"], [14, "d"],
     [2, "h"], [3, "h"], [4, "h"], [5, "h"], [6, "h"], [7, "h"], [8, "h"], [9, "h"], [10, "h"], [11, "h"], [12, "h"], [13, "h"], [14, "h"],
     [2, "s"], [3, "s"], [4, "s"], [5, "s"], [6, "s"], [7, "s"], [8, "s"], [9, "s"], [10, "s"], [11, "s"], [12, "s"], [13, "s"], [14, "s"]
-];                                          //2D Karten Array
+];                                                          //2D Karten Array
 
 const role = ['dealer', 'guesser', 'watcher'];              // Die möglichen Rollen
-let players = [                                             //player als object
+let players = [                                             // player als object
     {
         name: "COM_1",                                       // Name des jeweiligen spielers
-        role: role[0]                                      // Role des jeweiligen spielers
-    },
+        role: role[0]                                        // Role des jeweiligen spielers
+
     {
         name: "",
         role: role[1]
@@ -39,12 +39,12 @@ let players = [                                             //player als object
         name: "COM_3",
         role: role[2]
     },
-];                                        // player als objekt
+];                                                           // player als objekt
 
-let players_new = [                                             //player als object
+let players_new = [                                             
     {
-        name: "",                                       // Name des jeweiligen spielers
-        role: ""                                      // Role des jeweiligen spielers
+        name: "",                                       
+        role: ""                                      
     },
     {
         name: "",
@@ -58,18 +58,18 @@ let players_new = [                                             //player als obj
         name: "",
         role: ""
     },
-];                                    // player und deren rollen
+];                                                          // wenn der nächste dran ist wird dieses objekt als zwischen füller verwendet
 let player_name;                                            // wird verwendet um rollen neu zu verteilen
 
 let prev_i;
 let prev_guess;                                             // vorherige Zahl die geraten wurde (für abgleich welche beim 2. Versuch noch angezeigt werden)
 
 let trys = 2;                                               // versuche die jeder spieler in seiner runde zum raten hat
-//let guess;                                                  // könnte für output nützlich sein damit die anderen sehen welche zahl geraten wurde
+//let guess;                                                // könnte für output nützlich sein damit die anderen sehen welche zahl geraten wurde
 
 let fail_guesses = 0;                                       // zählt die fehl versuche von einem spielern pro 2 versuche h
 let fail_rounds = 0;                                        // zählt die fehl versuche von allen spielern also pro runde +1 wenn einer 2x verhaut
-let stay_dealer = true;                                            // bool um entscheiden wie in next round verfahren wird
+let stay_dealer = true;                                     // bool um entscheiden wie in next round verfahren wird
 
 //fürs html
 //TODO current guess einblenden damit alle es sehen können
@@ -176,15 +176,15 @@ function guessF(c) {
         showCard(c, cardToShow);
         fail_guesses = false;
         next(fail_guesses);
-    } else {                                                                    //dieser teil wird nur einmal  ausgeführt user rät falsch.
+    } else {                                                                    // dieser teil wird nur einmal  ausgeführt user rät falsch.
         fail_guesses = true;
         prev_guess = c;
         let feedback;
         if (trys === 1) {
             if (c < cards[cards.length - 1][0]) {
-                feedback = 1;                                                   //Zahl muss größer sein
+                feedback = 1;                                                   // Zahl muss größer sein
             } else if (c > cards[cards.length - 1][0]) {
-                feedback = -1;                                                  //Zahl muss kleiner sein
+                feedback = -1;                                                  // Zahl muss kleiner sein
             }
             showGuessAgainMsg(feedback);
         } else {                                                                // wird ausgeführt wenn der spieler bereits 2x getippt hat
@@ -260,7 +260,7 @@ function next(fail_guesses) {       // meint 2x falsch vom selben spieler
     switchRole();
 }
 
-function switchRole() {                                                                             //2 möglichkeiten
+function switchRole() {                                                           //2 möglichkeiten
 
     //1. alle wechseln da der dealer weiter gegeben wird
     if (stay_dealer === false) {
@@ -282,16 +282,15 @@ function switchRole() {                                                         
             if (prev_i < 0) {
                 prev_i = players.length - 1;
             }
-            if (players[i].role !== role[0]) {              // betrifft mich also players[1] da ich nicht dealer bin
-                if (players[prev_i].role === role[0]) {     //betrifft mich da der vor mir players[0] dealer ist
-                    prev_i = prev_i - 1;                     //sagt es soll die role von letztem spieler nehmen
-                    if (prev_i < 0) {                        // wenn <0 dann max von players
+            if (players[i].role !== role[0]) {                         // betrifft mich also players[1] da ich nicht dealer bin
+                if (players[prev_i].role === role[0]) {                // betrifft mich da der vor mir players[0] dealer ist
+                    prev_i = prev_i - 1;                               // sagt es soll die role von letztem spieler nehmen
+                    if (prev_i < 0) {                                  // wenn <0 dann max von players
                         prev_i = players.length - 1;
                     }
                 }
-                //setzt bis auf den der dealer ist die role auf eins dahinter
 
-                players_new[i].role = players[prev_i].role;     //wenn ich jetzt
+                players_new[i].role = players[prev_i].role;
 
             } else if (players[i].role === role[0]) {
                 players_new[i].role = players[i].role;
