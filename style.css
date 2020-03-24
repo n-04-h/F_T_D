@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: darkcyan;
+}
+#start-form{
+    text-align: center;
+}
+
+.cards {
+    border-radius: 0.2vw;
+    height: 10vw;
+    width: 20vw;
+
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+#shown-cards{
+    padding-top: 20vh;
+}
+
+.layer{
+    display: flex;
+    justify-content: center;
+}
+
+.first{
+
+ }
+.second{
+    margin-top: -8vw;
+}
+.third{
+    margin-top: -8vw;
+}
+.fourth{
+    margin-top: -8vw;
+}
+
+.first > DIV{
+
+    border: 0.04em solid white;
+}
+
+#guess-field{
+    padding-top: 2vw;
+}
+
+#guess-field > BUTTON{
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 20vw;
+    height: 4vw;
+    background-color: cornflowerblue;
+}
+BUTTON{
+    border: 2px solid whitesmoke;
+    border-radius: 4px;
+    background-color: darkblue;
+    color:whitesmoke;
+}
+
+BUTTON:hover{
+    background-color: whitesmoke;
+    color: darkblue;
+    border: none;
+}
+
+
+#output{
+    text-align: center;
+}
+
